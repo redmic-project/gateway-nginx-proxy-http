@@ -15,7 +15,7 @@ services:
       - source: nginx-config
         target: /etc/nginx/nginx.conf
     healthcheck:
-      test: wget --spider -q http://localhost/favicon.ico
+      test: wget --spider -q http://localhost/nginx-health
       interval: ${HEALTHCHECK_INTERVAL:-30s}
       timeout: ${HEALTHCHECK_TIMEOUT:-15s}
       retries: ${HEALTHCHECK_RETRIES:-10}
