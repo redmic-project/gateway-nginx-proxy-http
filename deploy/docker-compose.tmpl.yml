@@ -1,0 +1,53 @@
+version: '3.5'
+
+services:
+  nginx-proxy-http:
+    image: ${IMAGE_NAME:-nginx}:${IMAGE_TAG:-alpine}
+    networks:
+      traefik-net:
+    ports:
+      - target: 80
+        published: 80
+        mode: host
+    volumes:
+      - acme-vol:/var/www/letsencrypt
+    configs:
+      - source: nginx-config
+        target: /etc/nginx/nginx.conf
+    healthcheck:
+      test: wget --spider -q http://localhost/favicon.ico
+      interval: ${HEALTHCHECK_INTERVAL:-30s}
+      timeout: ${HEALTHCHECK_TIMEOUT:-15s}
+      retries: ${HEALTHCHECK_RETRIES:-10}
+      start_period: ${HEALTHCHECK_START_PERIOD:-1m}
+    deploy:
+      mode: replicated
+      replicas: ${REPLICAS:-1}
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        delay: ${RESTART_DELAY:-5s}
+      update_config:
+        delay: ${UPDATE_DELAY:-1m}
+      resources:
+        limits:
+          cpus: '${RESOURCES_LIMITS_CPUS:-0.1}'
+          memory: ${RESOURCES_LIMITS_MEMORY:-32M}
+        reservations:
+          cpus: '${RESOURCES_RESERVATIONS_CPUS:-0.001}'
+          memory: ${RESOURCES_RESERVATIONS_MEMORY:-4M}
+
+networks:
+  traefik-net:
+    name: ${TRAEFIK_NET_NAME:-traefik-net}
+    external: true
+
+volumes:
+  acme-vol:
+    name: ${ACME_VOL_NAME:-acme-vol}
+
+configs:
+  nginx-config:
+    name: ${NGINX_CONFIG_NAME:-nginx-proxy-http-config}
+    file: ./config/nginx.conf

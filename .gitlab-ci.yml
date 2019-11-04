@@ -1,0 +1,18 @@
+include:
+  - project: 'redmic-project/gitlab-ci-templates'
+    ref: master
+    file: '/deployment.yml'
+
+stages:
+  - deploy
+
+variables:
+  DD_IMAGE_NAME: nginx
+  DD_IMAGE_TAG: alpine
+  STACK: gateway
+
+.deploy:
+  variables:
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}
+  environment:
+    url: http://${PUBLIC_HOSTNAME}
