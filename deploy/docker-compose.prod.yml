@@ -1,1 +1,8 @@
 version: '3.5'
+
+services:
+  nginx-proxy-http:
+    deploy:
+      placement:
+        constraints:
+          - engine.labels.availability_zone == ${AWS_REGION}a
