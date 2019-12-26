@@ -26,7 +26,6 @@ services:
       placement:
         constraints:
           - node.role == manager
-          - engine.labels.availability_zone == ${AWS_REGION}a
       restart_policy:
         delay: ${RESTART_DELAY:-5s}
       update_config:
