@@ -1,6 +1,6 @@
 include:
   - project: 'redmic-project/gitlab-ci-templates'
-    ref: feature-updateDeployment
+    ref: master
     file: '/deployment.yml'
 
 stages:
