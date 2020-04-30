@@ -2,9 +2,6 @@ include:
   - project: 'redmic-project/gitlab-ci-templates'
     ref: feature-updateDeployment
     file: '/deployment.yml'
-  - project: 'redmic-project/gitlab-ci-templates'
-    ref: feature-updateDeployment
-    file: '/deployment-custom-image.yml'
 
 stages:
   - deploy
