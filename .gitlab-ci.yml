@@ -6,9 +6,11 @@ include:
 stages:
   - deploy
 
+variables:
+  STACK: gateway
+
 .deploy:
   variables:
-    STACK: ${CI_PROJECT_NAMESPACE}
-    SERVICES_TO_CHECK: ${CI_PROJECT_NAMESPACE}_${CI_PROJECT_NAME}
+    SERVICES_TO_CHECK: ${STACK}_${CI_PROJECT_NAME}
   environment:
     url: http://${PUBLIC_HOSTNAME}
