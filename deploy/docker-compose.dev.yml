@@ -9,7 +9,7 @@ services:
 
 volumes:
   acme-vol:
-    name: ${ACME_VOL_NAME:-acme-vol}
+    name: ${ACME_VOL_NAME}
     driver: local
     driver_opts:
       type: ${ACME_VOL_TYPE:-nfs4}

@@ -9,4 +9,4 @@ services:
 
 volumes:
   acme-vol:
-    name: ${ACME_VOL_NAME:-acme-vol}
+    name: ${ACME_VOL_NAME}
