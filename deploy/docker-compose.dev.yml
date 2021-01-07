@@ -5,5 +5,13 @@ services:
     deploy:
       placement:
         constraints:
-          - node.hostname == ${PLACEMENT_CONSTRAINTS_NODE_HOSTNAME:-hostname}
           - node.labels.${PLACEMENT_CONSTRAINTS_NODE_LABELS_NAME:-gateway} == ${PLACEMENT_CONSTRAINTS_NODE_LABELS_VALUE:-true}
+
+volumes:
+  acme-vol:
+    name: ${ACME_VOL_NAME:-acme-vol}
+    driver: local
+    driver_opts:
+      type: ${ACME_VOL_TYPE:-nfs4}
+      o: addr=${ACME_VOL_ADDR:-127.0.0.1},${ACME_VOL_OPTIONS:-rw,nolock,noatime,tcp,rsize=8192,wsize=8192,timeo=14}
+      device: ${ACME_VOL_DEVICE:-:/acme-vol/}

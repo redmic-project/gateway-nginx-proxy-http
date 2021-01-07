@@ -36,17 +36,13 @@ services:
           memory: ${RESOURCES_LIMITS_MEMORY:-32M}
         reservations:
           cpus: '${RESOURCES_RESERVATIONS_CPUS:-0.001}'
-          memory: ${RESOURCES_RESERVATIONS_MEMORY:-4M}
+          memory: ${RESOURCES_RESERVATIONS_MEMORY:-6M}
 
 networks:
   traefik-net:
     name: ${TRAEFIK_NET_NAME:-traefik-net}
     driver: ${TRAEFIK_NET_DRIVER:-overlay}
     external: true
-
-volumes:
-  acme-vol:
-    name: ${ACME_VOL_NAME:-acme-vol}
 
 configs:
   nginx-config:
