@@ -1,14 +1,12 @@
-version: '3.5'
-
 services:
   nginx-proxy-http:
     image: ${IMAGE_NAME:-nginx}:${IMAGE_TAG:-alpine}
     networks:
       traefik-net:
     ports:
-      - target: 80
-        published: 80
-        mode: host
+      - target: ${HTTP_INTERNAL_PORT}
+        published: ${HTTP_PORT}
+        mode: ${PORT_MODE}
     volumes:
       - acme-vol:/var/www/letsencrypt
     configs:
@@ -27,7 +25,7 @@ services:
         constraints:
           - node.role == manager
       restart_policy:
-        delay: ${RESTART_DELAY:-5s}
+        delay: ${RESTART_DELAY:-0s}
       update_config:
         delay: ${UPDATE_DELAY:-1m}
       resources:
