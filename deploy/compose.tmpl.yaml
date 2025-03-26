@@ -46,3 +46,7 @@ configs:
   default-config:
     name: ${DEFAULT_CONFIG_NAME:-nginx-proxy-http-default-config}
     file: ./config/default.conf
+
+  redirect-ecomarcan-config:
+    name: ${REDIRECT_ECOMARCAN_CONFIG_NAME:-nginx-proxy-http-redirect-ecomarcan-config}
+    file: ./config/redirect-ecomarcan.conf
