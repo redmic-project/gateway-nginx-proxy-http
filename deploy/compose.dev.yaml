@@ -13,8 +13,3 @@ volumes:
       type: ${VOL_TYPE:-nfs}
       o: addr=${VOL_ADDR:-127.0.0.1},vers=${VOL_VERS:-4.2},${VOL_OPTS:-nolock,noacl,noatime,nodiratime}
       device: :${VOL_DEVICE_PREFIX}${ACME_VOL_DEVICE:-/acme-vol/}
-
-configs:
-  redirect-redmic-config:
-    name: ${REDIRECT_REDMIC_CONFIG_NAME}
-    file: ./config/dev-redirect-redmic.conf

@@ -8,8 +8,3 @@ services:
 volumes:
   acme-vol:
     name: ${ACME_VOL_NAME}
-
-configs:
-  redirect-redmic-config:
-    name: ${REDIRECT_REDMIC_CONFIG_NAME}
-    file: ./config/pro-redirect-redmic.conf

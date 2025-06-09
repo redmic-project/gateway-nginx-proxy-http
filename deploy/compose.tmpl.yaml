@@ -12,10 +12,6 @@ services:
     configs:
       - source: default-config
         target: /etc/nginx/conf.d/default.conf
-      - source: redirect-redmic-config
-        target: /etc/nginx/conf.d/redirect-redmic.conf
-      - source: redirect-ecomarcan-config
-        target: /etc/nginx/conf.d/redirect-ecomarcan.conf
     healthcheck:
       test: wget --spider -q http://localhost/nginx-health
       interval: ${HEALTHCHECK_INTERVAL:-30s}
@@ -50,7 +46,3 @@ configs:
   default-config:
     name: ${DEFAULT_CONFIG_NAME:-nginx-proxy-http-default-config}
     file: ./config/default.conf
-
-  redirect-ecomarcan-config:
-    name: ${REDIRECT_ECOMARCAN_CONFIG_NAME:-nginx-proxy-http-redirect-ecomarcan-config}
-    file: ./config/redirect-ecomarcan.conf
