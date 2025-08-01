@@ -1,10 +1,6 @@
-services:
-  nginx-proxy-http:
-    deploy:
-      placement:
-        constraints:
-          - engine.labels.availability_zone == ${AWS_REGION}a
-
 volumes:
   acme-vol:
     name: ${ACME_VOL_NAME}
+    driver: ${PRO_VOL_DRIVER:-cloudstor:aws}
+    driver_opts:
+      backing: shared

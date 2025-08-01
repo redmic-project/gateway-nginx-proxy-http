@@ -23,7 +23,7 @@ services:
       replicas: ${REPLICAS:-1}
       placement:
         constraints:
-          - node.role == manager
+          - ${PLACEMENT_CONSTRAINTS_NAME:-node.labels.gateway} ${PLACEMENT_CONSTRAINTS_OPERATOR:-==} ${PLACEMENT_CONSTRAINTS_VALUE:-true}
       restart_policy:
         delay: ${RESTART_DELAY:-0s}
       update_config:
